@@ -16,20 +16,20 @@ public class CreateCarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        super.doPost(request, response);
+
 
         String carName = request.getParameter("car-name");
 
         System.out.println(carName);
 
         CarDao dao = new CarDao();
-        Car carro = new Car();
+        Car carro = new Car(carName);
 
-        carro.setName(carName);
+
         dao.createCar(carro);
 
 
-        request.getRequestDispatcher("index.html").forward(request, response);
+        response.sendRedirect("/find-all-cars");;
     }
 
 }
